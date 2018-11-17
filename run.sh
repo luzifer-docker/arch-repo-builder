@@ -19,6 +19,9 @@ if [ ! -e PKGBUILD ]; then
 	cd /src/git
 fi
 
+# Update pacman index
+pacman -Sy
+
 # Execute the build itself
 gosu builder makepkg -cCs --noconfirm --needed
 
