@@ -2,6 +2,7 @@
 set -euxo pipefail
 
 SRC=${1:-}
+MAKEPKG_OPTS=(-cCs --noconfirm --needed)
 
 # Override WORKDIR
 cd /src
@@ -19,11 +20,16 @@ if [ ! -e PKGBUILD ]; then
 	cd /src/git
 fi
 
+[ -e /config/signing.asc ] && {
+	gosu builder gpg --import </config/signing.asc
+	MAKEPKG_OPTS+=(--sign)
+}
+
 # Update pacman index
 pacman -Sy
 
 # Execute the build itself
-gosu builder makepkg -cCs --noconfirm --needed
+gosu builder makepkg ${MAKEPKG_OPTS[@]}
 
 PACKAGE=$(ls *.pkg.*) # This should be only one file
 

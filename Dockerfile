@@ -14,7 +14,7 @@ RUN set -ex \
       /usr/local/bin/dumb-init \
       /usr/local/bin/gosu
 
-VOLUME ["/src", "/repo"]
+VOLUME ["/src", "/repo", "/config"]
 WORKDIR /src
 
 COPY run.sh /usr/local/bin/
