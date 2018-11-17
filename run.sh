@@ -31,6 +31,7 @@ REPODB=$(find /repo -name '*.db.*' ! -name '*.old')
 if [ -z "${REPODB}" ]; then
 	echo "No database found in /repo, not adding package."
 	echo "The built package is available in ${PACKAGE}"
+	exit 0
 fi
 
 gosu builder mv "${PACKAGE}" /repo
