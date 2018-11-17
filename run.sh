@@ -40,7 +40,7 @@ if [ -z "${REPODB}" ]; then
 	exit 0
 fi
 
-gosu builder mv "${PACKAGE}" /repo
+gosu builder mv ${PACKAGE}* /repo
 
 cd /repo
 gosu builder repo-add ${REPODB} "${PACKAGE}"
