@@ -31,7 +31,7 @@ pacman -Sy
 # Execute the build itself
 gosu builder makepkg ${MAKEPKG_OPTS[@]}
 
-PACKAGE=$(ls *.pkg.*) # This should be only one file
+PACKAGE=$(ls *.pkg.tar.xz) # This should be only one file
 
 REPODB=$(find /repo -name '*.db.*' ! -name '*.old')
 if [ -z "${REPODB}" ]; then
