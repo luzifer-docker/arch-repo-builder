@@ -3,6 +3,7 @@ set -euxo pipefail
 
 SRC=${1:-}
 MAKEPKG_OPTS=(-cCs --noconfirm --needed)
+REPOADD_OPTS=()
 
 # Override WORKDIR
 cd /src
@@ -23,6 +24,7 @@ fi
 [ -e /config/signing.asc ] && {
 	gosu builder gpg --import </config/signing.asc
 	MAKEPKG_OPTS+=(--sign)
+	REPOADD_OPTS+=(--sign)
 }
 
 # Update pacman index
@@ -33,7 +35,7 @@ gosu builder makepkg ${MAKEPKG_OPTS[@]}
 
 PACKAGE=$(ls *.pkg.tar.xz) # This should be only one file
 
-REPODB=$(find /repo -name '*.db.*' ! -name '*.old')
+REPODB=$(find /repo -name '*.db.tar.xz')
 if [ -z "${REPODB}" ]; then
 	echo "No database found in /repo, not adding package."
 	echo "The built package is available in ${PACKAGE}"
@@ -43,4 +45,4 @@ fi
 gosu builder mv ${PACKAGE}* /repo
 
 cd /repo
-gosu builder repo-add ${REPODB} "${PACKAGE}"
+gosu builder repo-add ${REPOADD_OPTS[@]} ${REPODB} "${PACKAGE}"
