@@ -1,4 +1,4 @@
-FROM archlinux/base:latest
+FROM archimg/base:latest
 
 RUN set -ex \
  && pacman -Sy \
