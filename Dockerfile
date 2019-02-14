@@ -1,4 +1,4 @@
-FROM archlinux/base:latest
+FROM luzifer/archlinux:latest
 
 RUN set -ex \
  && pacman -Sy \
