@@ -30,6 +30,9 @@ fi
 # Update pacman index
 pacman -Sy
 
+# Retrieve GPG keys if required
+gosu builder getkeys.sh
+
 # Execute the build itself
 gosu builder makepkg ${MAKEPKG_OPTS[@]}
 
