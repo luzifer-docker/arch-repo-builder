@@ -8,9 +8,9 @@ set -euo pipefail
 
 source PKGBUILD
 
-[ -n "${validgpgkeys:-}" ] || {
-	echo "No 'validgpgkeys' directive found, nothing to do"
+[ -n "${validpgpkeys:-}" ] || {
+	echo "No 'validpgpkeys' directive found, nothing to do"
 	exit 0
 }
 
-exec gpg --recv-keys "${validgpgkeys[@]}"
+exec gpg --recv-keys "${validpgpkeys[@]}"
