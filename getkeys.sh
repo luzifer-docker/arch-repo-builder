@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -eo pipefail
 
 [ -f "PKGBUILD" ] || {
 	echo "No PKGBUILD file found"
