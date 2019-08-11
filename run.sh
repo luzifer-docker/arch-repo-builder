@@ -36,7 +36,7 @@ gosu builder getkeys.sh
 # Execute the build itself
 gosu builder makepkg ${MAKEPKG_OPTS[@]}
 
-PACKAGE=$(ls *.pkg.tar.xz) # This should be only one file
+PACKAGE=($(ls *.pkg.tar.xz))
 
 REPODB=$(find /repo -name '*.db.tar.xz')
 if [ -z "${REPODB}" ]; then
@@ -45,7 +45,9 @@ if [ -z "${REPODB}" ]; then
 	exit 0
 fi
 
-gosu builder mv ${PACKAGE}* /repo
+for pkg_file in "${PACKAGE[@]}"; do
+	gosu builder mv ${pkg_file}* /repo
 
-cd /repo
-gosu builder repo-add ${REPOADD_OPTS[@]} ${REPODB} "${PACKAGE}"
+	cd /repo
+	gosu builder repo-add ${REPOADD_OPTS[@]} ${REPODB} "${pkg_file}"
+done
