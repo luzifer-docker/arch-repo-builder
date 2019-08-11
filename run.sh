@@ -48,6 +48,7 @@ fi
 for pkg_file in "${PACKAGE[@]}"; do
 	gosu builder mv ${pkg_file}* /repo
 
-	cd /repo
+	pushd /repo
 	gosu builder repo-add ${REPOADD_OPTS[@]} ${REPODB} "${pkg_file}"
+	popd
 done
