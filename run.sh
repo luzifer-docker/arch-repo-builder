@@ -21,6 +21,10 @@ if [ ! -e PKGBUILD ]; then
 	cd /src/git
 fi
 
+[[ ${SKIP_VERIFY:-} == true ]] && {
+	MAKEPKG_OPTS+=(--skippgpcheck)
+}
+
 [ -e /config/signing.asc ] && {
 	gosu builder gpg --import </config/signing.asc
 	MAKEPKG_OPTS+=(--sign)

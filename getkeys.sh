@@ -1,6 +1,8 @@
 #!/bin/bash
 set -eo pipefail
 
+[[ ${SKIP_VERIFY:-} == true ]] && exit 0
+
 [ -f "PKGBUILD" ] || {
 	echo "No PKGBUILD file found"
 	exit 1
