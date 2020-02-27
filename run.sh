@@ -32,7 +32,7 @@ fi
 }
 
 # Update pacman index
-pacman -Sy
+pacman -Sy --noconfirm
 
 # Retrieve GPG keys if required
 gosu builder getkeys.sh
