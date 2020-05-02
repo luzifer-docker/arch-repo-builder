@@ -31,8 +31,8 @@ fi
 	REPOADD_OPTS+=(--sign)
 }
 
-# Update pacman index
-pacman -Sy --noconfirm
+# Update pacman index and any updated package
+pacman -Syyu --noconfirm
 
 # Retrieve GPG keys if required
 gosu builder getkeys.sh
