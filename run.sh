@@ -1,9 +1,27 @@
 #!/usr/local/bin/dumb-init /bin/bash
-set -euxo pipefail
+set -euo pipefail
 
-SRC=${1:-}
 MAKEPKG_OPTS=(-cCs --noconfirm --needed)
 REPOADD_OPTS=()
+SKIP_VERIFY="${SKIP_VERIFY:-}"
+
+while getopts ":hRs" opt; do
+	case "${opt}" in
+	R) # Remove older version of package from repo
+		REPOADD_OPTS+=(-R)
+		;;
+	s) # Skip PGP check for source signatures
+		SKIP_VERIFY="true"
+		;;
+	h | *) # Display help
+		echo "Usage:"
+		grep '\s.)\ #' $0
+		exit 1
+		;;
+	esac
+done
+
+SRC=${1:-}
 
 # Override WORKDIR
 cd /src
