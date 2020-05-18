@@ -49,6 +49,14 @@ fi
 	REPOADD_OPTS+=(--sign)
 }
 
+if [ -e /config/pacman.conf ]; then
+	# Allow full overwrite of pacman.conf
+	cp /config/pacman.conf /etc/pacman.conf
+elif [ -e /config/pacman.conf.partial ]; then
+	# Allow to provide a partial pacman.conf to append
+	cat /config/pacman.conf.partial >>/etc/pacman.conf
+fi
+
 # Update pacman index and any updated package
 pacman -Syyu --noconfirm
 
