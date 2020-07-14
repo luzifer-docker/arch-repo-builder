@@ -66,9 +66,9 @@ gosu builder getkeys.sh
 # Execute the build itself
 gosu builder makepkg ${MAKEPKG_OPTS[@]}
 
-PACKAGE=($(ls *.pkg.tar.xz))
+PACKAGE=($(ls *.pkg.tar.*))
 
-REPODB=$(find /repo -name '*.db.tar.xz')
+REPODB=$(find /repo -name '*.db.tar.*')
 if [ -z "${REPODB}" ]; then
 	echo "No database found in /repo, not adding package."
 	echo "The built package is available in ${PACKAGE}"
