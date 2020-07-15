@@ -68,7 +68,7 @@ gosu builder makepkg ${MAKEPKG_OPTS[@]}
 
 PACKAGE=($(find . -regextype egrep -regex '^.*\.pkg(|\.tar|\.tar\.xz|\.tar\.zst)$'))
 
-REPODB=$(find /repo -regextype egrep -regex '^.*\.db(|\.tar|\.tar\.xz|\.tar.zst)$')
+REPODB=$(find /repo -regextype egrep -regex '^.*\.db(\.tar|\.tar\.xz|\.tar.zst)$')
 if [ -z "${REPODB}" ]; then
 	echo "No database found in /repo, not adding package."
 	echo "The built package is available in ${PACKAGE}"
