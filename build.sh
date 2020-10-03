@@ -22,6 +22,7 @@ echo "builder ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/builder
 mkdir ~builder/.gnupg
 echo "keyserver ${keyserver}" >~builder/.gnupg/gpg.conf
 chown -R builder ~builder/.gnupg
+chmod 0700 ~builder/.gnupg
 
 # Install
 pacman-key --init
