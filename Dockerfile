@@ -1,4 +1,4 @@
-FROM luzifer/archlinux:latest@sha256:f0d16308f92f3ec879eb52e947c3a63d0164167e9f0cc38f6de2597ffa6df3e0
+FROM luzifer/archlinux:latest@sha256:68cacd2c625176a9863c2967a8485600e62211229eed91d2d004e4ba238746d4
 
 COPY build.sh /usr/local/bin/
 RUN bash /usr/local/bin/build.sh
