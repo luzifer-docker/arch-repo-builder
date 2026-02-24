@@ -1,4 +1,4 @@
-FROM ghcr.io/luzifer-docker/archlinux:latest@sha256:283d7fe87452b5559f1b2aa639fb23acb45e3d7c759c229c9b6de49bf7e2385e
+FROM ghcr.io/luzifer-docker/archlinux:latest@sha256:6d8e72186a4ca1308cd1d4c28fdc05b536d7c38198ec05287fa10bd4b183749c
 
 COPY build.sh /usr/local/bin/
 RUN bash /usr/local/bin/build.sh
